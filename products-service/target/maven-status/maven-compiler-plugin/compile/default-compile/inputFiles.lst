@@ -1,0 +1,7 @@
+D:\microservice-springboot\products-service\src\main\java\com\microservice\productservice\ProductServiceApplication.java
+D:\microservice-springboot\products-service\src\main\java\com\microservice\productservice\dto\ProductRequest.java
+D:\microservice-springboot\products-service\src\main\java\com\microservice\productservice\model\Product.java
+D:\microservice-springboot\products-service\src\main\java\com\microservice\productservice\repository\ProductRepository.java
+D:\microservice-springboot\products-service\src\main\java\com\microservice\productservice\dto\ProductResponse.java
+D:\microservice-springboot\products-service\src\main\java\com\microservice\productservice\controller\ProductController.java
+D:\microservice-springboot\products-service\src\main\java\com\microservice\productservice\service\ProductService.java
