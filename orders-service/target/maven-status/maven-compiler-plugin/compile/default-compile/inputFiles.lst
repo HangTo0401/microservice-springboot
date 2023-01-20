@@ -9,3 +9,4 @@ D:\microservice-springboot\orders-service\src\main\java\com\microservice\orderse
 D:\microservice-springboot\orders-service\src\main\java\com\microservice\orderservice\dto\OrderRequest.java
 D:\microservice-springboot\orders-service\src\main\java\com\microservice\orderservice\event\OrderPlacedEvent.java
 D:\microservice-springboot\orders-service\src\main\java\com\microservice\orderservice\model\OrderLineItems.java
+D:\microservice-springboot\orders-service\src\main\java\com\microservice\orderservice\dto\InventoryResponse.java
