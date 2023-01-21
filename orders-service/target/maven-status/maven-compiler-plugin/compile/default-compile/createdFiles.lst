@@ -6,7 +6,7 @@ com\microservice\orderservice\controller\OrderController.class
 com\microservice\orderservice\repository\OrderRepository.class
 com\microservice\orderservice\service\OrderService.class
 com\microservice\orderservice\dto\OrderLineItemsDto.class
-com\microservice\orderservice\model\Order$OrderBuilder.class
+com\microservice\orderservice\config\WebClientConfig.class
 com\microservice\orderservice\OrderServiceApplication.class
 com\microservice\orderservice\model\Order.class
 com\microservice\orderservice\dto\OrderRequest.class

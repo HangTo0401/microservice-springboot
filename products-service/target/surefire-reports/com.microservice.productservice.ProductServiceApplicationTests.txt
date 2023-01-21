@@ -1,7 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.microservice.productservice.ProductServiceApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 6.529 s <<< FAILURE! - in com.microservice.productservice.ProductServiceApplicationTests
-com.microservice.productservice.ProductServiceApplicationTests  Time elapsed: 6.528 s  <<< ERROR!
-java.lang.IllegalStateException: Could not find a valid Docker environment. Please see logs and check configuration
-

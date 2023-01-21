@@ -1,5 +1,6 @@
 D:\microservice-springboot\orders-service\src\main\java\com\microservice\orderservice\repository\OrderRepository.java
 D:\microservice-springboot\orders-service\src\main\java\com\microservice\orderservice\controller\OrderController.java
+D:\microservice-springboot\orders-service\src\main\java\com\microservice\orderservice\config\WebClientConfig.java
 D:\microservice-springboot\orders-service\src\main\java\com\microservice\orderservice\model\Order.java
 D:\microservice-springboot\orders-service\src\main\java\com\microservice\orderservice\dto\OrderResponse.java
 D:\microservice-springboot\orders-service\src\main\java\com\microservice\orderservice\service\OrderService.java
