@@ -9,7 +9,6 @@ import java.util.List;
 @Table(name = "t_orders")
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Order {

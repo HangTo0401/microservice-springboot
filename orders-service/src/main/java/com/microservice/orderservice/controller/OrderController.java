@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderController {
 
-    private final OrderService orderService;
+    private OrderService orderService;
 
     @PostMapping
     public String placeOrder(@RequestBody OrderRequest orderRequest) {

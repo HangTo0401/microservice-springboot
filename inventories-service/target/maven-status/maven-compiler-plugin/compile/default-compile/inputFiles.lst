@@ -1,1 +1,6 @@
 D:\microservice-springboot\inventories-service\src\main\java\com\microservice\inventoryservice\InventoryServiceApplication.java
+D:\microservice-springboot\inventories-service\src\main\java\com\microservice\inventoryservice\dto\InventoryResponse.java
+D:\microservice-springboot\inventories-service\src\main\java\com\microservice\inventoryservice\controller\InventoryController.java
+D:\microservice-springboot\inventories-service\src\main\java\com\microservice\inventoryservice\model\Inventory.java
+D:\microservice-springboot\inventories-service\src\main\java\com\microservice\inventoryservice\repository\InventoryRepository.java
+D:\microservice-springboot\inventories-service\src\main\java\com\microservice\inventoryservice\service\InventoryService.java
