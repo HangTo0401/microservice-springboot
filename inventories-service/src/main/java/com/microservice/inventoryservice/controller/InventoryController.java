@@ -4,7 +4,6 @@ import com.microservice.inventoryservice.dto.InventoryResponse;
 import com.microservice.inventoryservice.service.InventoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
