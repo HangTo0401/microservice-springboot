@@ -5,6 +5,6 @@ com\microservice\productservice\dto\ProductRequest.class
 com\microservice\productservice\controller\ProductController.class
 com\microservice\productservice\dto\ProductRequest$ProductRequestBuilder.class
 com\microservice\productservice\dto\ProductResponse$ProductResponseBuilder.class
-com\microservice\productservice\service\ProductService.class
 com\microservice\productservice\model\Product$ProductBuilder.class
 com\microservice\productservice\model\Product.class
+com\microservice\productservice\service\ProductService.class

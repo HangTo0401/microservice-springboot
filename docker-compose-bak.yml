@@ -1,0 +1,203 @@
+#---
+#version: '3'
+#services:
+#  ## MySQL Docker Compose Config
+##  mysql-order:
+##    container_name: mysql-order
+##    image: mysql:5.7
+##    environment:
+##      MYSQL_DATABASE: order-service
+###      MYSQL_USER: root
+###      MYSQL_PASSWORD: 1234
+##      MYSQL_ROOT_PASSWORD: 1234
+##    volumes:
+##      - ./mysql-order:/data/mysql
+##    expose:
+##      - "5431"
+##    ports:
+##      - "5431:3306"
+###    command: -p 5431
+##    restart: unless-stopped
+#
+#  ## Postgres Docker Compose Config
+##  postgres-inventory:
+##    container_name: postgres-inventory
+##    image: postgres
+##    environment:
+##      POSTGRES_DB: inventory-service
+##      POSTGRES_USER: postgres
+##      POSTGRES_PASSWORD: 1234
+##      PGDATA: /data/postgres
+##    volumes:
+##      - ./postgres-inventory:/data/postgres
+##    ports:
+##      - "5432:5432"
+##    restart: unless-stopped
+#
+#  ## Mongo Docker Compose Config
+#  mongo:
+#    container_name: mongo
+#    image: mongo:4.4.14-rc0-focal
+#    restart: unless-stopped
+#    ports:
+#      - "27017:27017"
+#    expose:
+#      - "27017"
+#    volumes:
+#      - ./mongo-data:/data/db
+#
+#  ## Keycloak Config with Mysql database
+#  keycloak-mysql:
+#    container_name: keycloak-mysql
+#    image: mysql:5.7
+#    volumes:
+#      - ./mysql_keycloak_data:/var/lib/mysql
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root
+#      MYSQL_DATABASE: keycloak
+#      MYSQL_USER: keycloak
+#      MYSQL_PASSWORD: password
+#
+#  keycloak:
+#    container_name: keycloak
+#    image: quay.io/keycloak/keycloak:20.0.3
+#    command: [ "start-dev", "--import-realm" ]
+#    environment:
+#      DB_VENDOR: MYSQL
+#      DB_ADDR: mysql
+#      DB_DATABASE: keycloak
+#      DB_USER: keycloak
+#      DB_PASSWORD: password
+#      KEYCLOAK_ADMIN: admin
+#      KEYCLOAK_ADMIN_PASSWORD: admin
+#    ports:
+#      - "8080:8080"
+#    volumes:
+#      - ./realms/:/opt/keycloak/data/import/
+#    depends_on:
+#      - keycloak-mysql
+#
+#  zookeeper:
+#    image: confluentinc/cp-zookeeper:7.3.0
+#    container_name: zookeeper
+#    ports:
+#      - "2181:2181"
+#    environment:
+#      ZOOKEEPER_CLIENT_PORT: 2181
+#      ZOOKEEPER_TICK_TIME: 2000
+##    networks:
+##      - kafka_network
+#
+#  broker:
+#    image: confluentinc/cp-kafka:7.3.0
+#    container_name: broker
+#    ports:
+#      # To learn about configuring Kafka for access across networks see
+#      # https://www.confluent.io/blog/kafka-client-cannot-connect-to-broker-on-aws-on-docker-etc/
+#      - "9092:9092"
+#    depends_on:
+#      - zookeeper
+##    networks:
+##      - kafka_network
+#    restart: always
+#    environment:
+#      KAFKA_BROKER_ID: 1
+#      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+#      KAFKA_ADVERTISED_HOST_NAME: broker
+#      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+#      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:9092,PLAINTEXT_INTERNAL://broker:29092
+#      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+#      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+#      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+#
+#  ## Zipkin
+#  zipkin:
+#    image: openzipkin/zipkin
+#    container_name: zipkin
+#    ports:
+#      - "9411:9411"
+#
+#  ## Eureka Server
+#  discovery-server:
+#    image: hangto/discovery-server:latest
+#    container_name: discovery-server
+#    pull_policy: always
+#    ports:
+#      - "8761:8761"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    depends_on:
+#      - zipkin
+#
+#  api-gateway:
+#    image: hangto/api-gateway:latest
+#    container_name: api-gateway
+#    pull_policy: always
+#    ports:
+#      - "8181:8080"
+#    expose:
+#      - "8181"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY= TRACE
+#    depends_on:
+#      - zipkin
+#      - discovery-server
+#      - keycloak
+#
+#  ## Product-Service Docker Compose Config
+#  product-service:
+#    container_name: products-service
+#    image: hangto/products-service:latest
+#    pull_policy: always
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#    depends_on:
+#      - mongo
+#      - discovery-server
+#      - api-gateway
+#
+#  ## Order-Service Docker Compose Config
+##  order-service:
+##    container_name: orders-service
+##    image: hangto/orders-service:latest
+##    pull_policy: always
+##    environment:
+##      - SPRING_PROFILES_ACTIVE=docker
+##      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-order:5431/order-service?autoReconnect=true&useSSL=false
+##    depends_on:
+##      - mysql-order
+##      - broker
+##      - zipkin
+##      - discovery-server
+##      - api-gateway
+#
+#  ## Inventory-Service Docker Compose Config
+##  inventory-service:
+##    container_name: inventories-service
+##    image: hangto/inventories-service:latest
+##    pull_policy: always
+##    environment:
+##      - SPRING_PROFILES_ACTIVE=docker
+##      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-inventory:5432/inventory-service
+##    depends_on:
+##      - postgres-inventory
+##      - discovery-server
+##      - api-gateway
+#
+#  ## Notification-Service Docker Compose Config
+##  notification-service:
+##    container_name: notification-service
+##    image: hangto/notification-service:latest
+##    pull_policy: always
+##    environment:
+##      - SPRING_PROFILES_ACTIVE=docker
+##    depends_on:
+##      - zipkin
+##      - broker
+##      - discovery-server
+##      - api-gateway
+#
+##networks:
+##  kafka_network:
+##    driver: bridge
