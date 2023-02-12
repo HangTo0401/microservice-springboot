@@ -10,6 +10,7 @@ import com.microservice.orderservice.model.Order;
 import com.microservice.orderservice.model.OrderLineItems;
 import com.microservice.orderservice.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.sleuth.Span;
 import org.springframework.cloud.sleuth.Tracer;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -34,7 +36,9 @@ public class OrderService {
 
     public String placeOrder(OrderRequest orderRequest) {
         Order order = new Order();
-        order.setOrderNumber(UUID.randomUUID().toString());
+        String orderNumber = UUID.randomUUID().toString();
+        order.setOrderNumber(orderNumber);
+        log.info("Place order in OrderService with id: " + orderNumber);
 
         List<OrderLineItems> orderLineItems = orderRequest.getOrderLineItemsDtoList()
                 .stream()
@@ -48,6 +52,7 @@ public class OrderService {
                 .collect(Collectors.toList());
 
         // Create own span
+        log.info("==========Create own span inventoryServiceLookup==========");
         Span inventoryServiceLookup = tracer.nextSpan().name("InventoryServiceLookup");
 
         try (Tracer.SpanInScope spanInScope = tracer.withSpan(inventoryServiceLookup.start())) {
@@ -65,6 +70,7 @@ public class OrderService {
             boolean allProductsInStock = Arrays.stream(inventoryResponseArray)
                     .allMatch(InventoryResponse::isInStock);
 
+            log.info("Check allProductsInStock: " + allProductsInStock);
             if (allProductsInStock) {
                 orderRepository.save(order);
                 kafkaTemplate.send("notificationTopic", new OrderPlacedEvent(order.getOrderNumber()));
