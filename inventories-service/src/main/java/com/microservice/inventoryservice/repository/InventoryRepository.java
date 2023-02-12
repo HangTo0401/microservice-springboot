@@ -12,4 +12,7 @@ import java.util.List;
 public interface InventoryRepository extends JpaRepository<Inventory, Long> {
     @Query(value = "SELECT * FROM public.t_inventory where sku_code IN (:skuCodes)", nativeQuery = true)
     List<Inventory> findBySkuCodeIn(@Param("skuCodes") List<String> skuCode);
+
+    @Query(value = "SELECT * FROM public.t_inventory where sku_code = (:skuCode)", nativeQuery = true)
+    Inventory findBySkuCode(@Param("skuCode") String skuCode);
 }
